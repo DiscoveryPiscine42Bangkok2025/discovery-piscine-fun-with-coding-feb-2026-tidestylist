@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>It's over 9000</title>
+    <style>
+        /* จัดหน้าตาให้ดูง่ายๆ หน่อย */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #333;
+            font-family: sans-serif;
+        }
+        .calculator {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        input, select, input[type="submit"] {
+            padding: 10px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator">
+        <input type="text" id="leftMember" placeholder="Left number">
+        
+        <select id="operator">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+            <option value="%">%</option>
+        </select>
+
+        <input type="text" id="rightMember" placeholder="Right number">
+
+        <input type="submit" value="Try me!" onclick="calc()">
+    </div>
+
+    <script>
+        // 1. ตั้งเวลาเตือนทุก 30 วินาที (30000 ms)
+        setInterval(function() {
+            alert("Please, use me...");
+        }, 30000);
+
+        // 2. ฟังก์ชันคำนวณ
+        function calc() {
+            // ดึงค่ามาจากช่องต่างๆ
+            var leftStr = document.getElementById("leftMember").value;
+            var rightStr = document.getElementById("rightMember").value;
+            var op = document.getElementById("operator").value;
+
+            // แปลงข้อความให้เป็นตัวเลข (Integer)
+            var left = parseInt(leftStr);
+            var right = parseInt(rightStr);
+
+            // --- กฎข้อที่ 1: ตรวจสอบความถูกต้องของข้อมูล (Validation) ---
+            // ต้องเป็นตัวเลข (ไม่เป็น NaN) และ ต้องมากกว่าหรือเท่ากับ 0
+            if (isNaN(left) || isNaN(right) || left < 0 || right < 0) {
+                alert("Error :(");
+                return; // จบการทำงานทันที
+            }
+
+            // --- กฎข้อที่ 2: ตรวจสอบการหารด้วยศูนย์ (It's over 9000) ---
+            if ((op == '/' || op == '%') && right == 0) {
+                alert("It's over 9000!");
+                console.log("It's over 9000!");
+                return; // จบการทำงานทันที
+            }
+
+            // --- คำนวณผลลัพธ์จริง ---
+            var result;
+            if (op == '+') result = left + right;
+            else if (op == '-') result = left - right;
+            else if (op == '*') result = left * right;
+            else if (op == '/') result = left / right;
+            else if (op == '%') result = left % right;
+
+            // แสดงผลลัพธ์ (Alert + Console Log)
+            alert(result);
+            console.log(result);
+        }
+    </script>
+
+</body>
+</html>

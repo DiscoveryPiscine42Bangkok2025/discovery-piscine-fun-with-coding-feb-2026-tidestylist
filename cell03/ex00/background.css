@@ -1,0 +1,24 @@
+/* background.css */
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    transition: background-color 0.5s; /* ทำให้สีเปลี่ยนแบบนุ่มนวล */
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+    box-shadow: 3px 3px 0px 0px black;
+}
+
+button:active {
+    box-shadow: 1px 1px 0px 0px black;
+    transform: translateY(2px);
+}

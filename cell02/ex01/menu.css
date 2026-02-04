@@ -1,0 +1,58 @@
+/* menu.css */
+
+body {
+    background-color: #f0f0f0;
+    font-family: sans-serif;
+}
+
+/* กล่องปุ่มหลัก */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* ตัวปุ่มเมนู */
+.dropbtn {
+    background-color: #4CAF50; /* สีเขียว */
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* กล่องรายการเมนู (ซ่อนอยู่ด้วย display: none) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px;
+}
+
+/* ลิ้งก์ข้างในเมนู */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* เปลี่ยนสีลิ้งก์ตอนเอาเมาส์ชี้ */
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+/* --- ไฮไลท์สำคัญ (Logic) --- */
+/* เมื่อเอาเมาส์ไปชี้ที่ .dropdown ให้แสดง .dropdown-content ขึ้นมา */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* เปลี่ยนสีปุ่มหลักตอนชี้ เพื่อความสวยงาม */
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}

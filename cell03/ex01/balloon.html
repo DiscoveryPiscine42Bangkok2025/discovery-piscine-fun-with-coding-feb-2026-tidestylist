@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Explode this balloon</title>
+    <style>
+        /* จัดลูกโป่งให้อยู่ตรงกลางหน้าจอ */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        /* ดีไซน์ลูกโป่ง */
+        #balloon {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            border-radius: 50%; /* ทำให้เป็นวงกลม */
+            cursor: pointer;
+            transition: all 0.2s ease; /* ใส่ Animation ให้ลื่นๆ */
+        }
+    </style>
+</head>
+<body>
+
+    <div id="balloon" onclick="clickBalloon()" onmouseleave="leaveBalloon()"></div>
+
+    <script>
+        // กำหนดค่าเริ่มต้น
+        var size = 200;
+        var colorIndex = 0; // 0=Red, 1=Green, 2=Blue
+        var colors = ['red', 'green', 'blue'];
+        var balloon = document.getElementById('balloon');
+
+        // ฟังก์ชันเมื่อคลิก (ขยาย + เปลี่ยนสีไปข้างหน้า)
+        function clickBalloon() {
+            // 1. เพิ่มขนาด
+            size += 10;
+            
+            // 2. เช็คว่าระเบิดหรือยัง (เกิน 420px)
+            if (size > 420) {
+                size = 200; // กลับไปขนาดเดิม
+                colorIndex = 0; // กลับไปสีแดง (Reset)
+            } else {
+                // เปลี่ยนสีไปข้างหน้า (0->1->2->0)
+                colorIndex++;
+                if (colorIndex > 2) {
+                    colorIndex = 0;
+                }
+            }
+
+            updateBalloon();
+        }
+
+        // ฟังก์ชันเมื่อเอาเมาส์ออก (หด - เปลี่ยนสีถอยหลัง)
+        function leaveBalloon() {
+            // 1. ลดขนาด
+            size -= 5;
+            // ห้ามเล็กกว่า 200
+            if (size < 200) {
+                size = 200;
+            }
+
+            // 2. เปลี่ยนสีถอยหลัง (0->2->1->0)
+            colorIndex--;
+            if (colorIndex < 0) {
+                colorIndex = 2;
+            }
+
+            updateBalloon();
+        }
+
+        // ฟังก์ชันอัปเดตหน้าจอ
+        function updateBalloon() {
+            balloon.style.width = size + 'px';
+            balloon.style.height = size + 'px';
+            balloon.style.backgroundColor = colors[colorIndex];
+        }
+    </script>
+
+</body>
+</html>

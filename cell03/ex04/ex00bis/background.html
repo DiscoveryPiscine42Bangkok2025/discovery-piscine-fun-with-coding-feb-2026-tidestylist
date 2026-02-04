@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery Background</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        button {
+            padding: 20px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="btn">Click me!</button>
+
+    <script>
+        // รอให้หน้าเว็บโหลดเสร็จก่อน (Document Ready)
+        $(document).ready(function() {
+            
+            // 2. ดักจับเหตุการณ์คลิกที่ปุ่ม id="btn"
+            $("#btn").click(function() {
+                
+                // สุ่มสี
+                let r = Math.floor(Math.random() * 256);
+                let g = Math.floor(Math.random() * 256);
+                let b = Math.floor(Math.random() * 256);
+                let color = "rgb(" + r + "," + g + "," + b + ")";
+
+                // 3. เปลี่ยน CSS ของ body ด้วยคำสั่ง .css()
+                $("body").css("background-color", color);
+                
+                console.log("New Color: " + color);
+            });
+
+        });
+    </script>
+
+</body>
+</html>

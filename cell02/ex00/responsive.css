@@ -1,0 +1,31 @@
+/* responsive.css */
+
+/* 1. สั่งให้ html และ body เต็มจอ */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+/* 2. สั่งให้ตารางกว้างและสูงเต็ม 100% */
+table {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+}
+
+/* 3. จัดกึ่งกลางและแบ่งครึ่งจอ */
+td {
+    text-align: center;
+    vertical-align: middle;
+    width: 50%;
+}
+
+/* 4. สีพื้นหลัง */
+.box1 {
+    background-color: lightblue;
+}
+.box2 {
+    background-color: lightgreen;
+}

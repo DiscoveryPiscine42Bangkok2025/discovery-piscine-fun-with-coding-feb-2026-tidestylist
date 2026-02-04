@@ -1,0 +1,54 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+/* คลาสสำหรับทำ Parallax */
+.parallax {
+    /* สำคัญมาก: ทำให้ภาพพื้นหลังยึดติดกับจอ ไม่เลื่อนตาม Scrollbar */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    /* ความสูงของส่วนรูปภาพ */
+    min-height: 500px; 
+    
+    /* จัดข้อความให้อยู่กึ่งกลาง */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* กำหนดรูปภาพที่ 1 */
+.img1 {
+    background-image: url("img1.jpg");
+}
+
+/* กำหนดรูปภาพที่ 2 */
+.img2 {
+    background-image: url("img2.jpg");
+}
+
+/* สไตล์สำหรับข้อความบนรูป */
+.message-box {
+    background-color: rgba(255, 255, 255, 0.8); /* พื้นหลังขาวโปร่งแสง */
+    padding: 20px;
+    font-size: 24px;
+    border-radius: 10px;
+    color: black;
+}
+
+/* ส่วนเนื้อหาสีดำตรงกลาง */
+.content-block {
+    height: 300px; /* ความสูงของแถบดำ */
+    background-color: black;
+    color: white;
+    font-size: 30px;
+    
+    /* จัดกึ่งกลาง */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

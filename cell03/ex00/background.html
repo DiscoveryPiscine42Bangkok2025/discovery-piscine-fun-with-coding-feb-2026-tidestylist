@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Change Background</title>
+    <link rel="stylesheet" href="background.css">
+</head>
+<body>
+
+    <button onclick="changeColor()">Click me!</button>
+
+    <script>
+        // --- พื้นที่เขียน JavaScript ---
+
+        function changeColor() {
+            // 1. สุ่มตัวเลข 0-255 สำหรับสีแดง (R), เขียว (G), น้ำเงิน (B)
+            let r = Math.floor(Math.random() * 256);
+            let g = Math.floor(Math.random() * 256);
+            let b = Math.floor(Math.random() * 256);
+
+            // 2. สร้างข้อความสีแบบ RGB เช่น "rgb(100, 50, 200)"
+            let randomColor = "rgb(" + r + "," + g + "," + b + ")";
+
+            // 3. สั่งเปลี่ยนสีพื้นหลังของ body
+            document.body.style.backgroundColor = randomColor;
+            
+            // (แถม) แสดงค่าสีใน Console เผื่ออยากดู
+            console.log("New Color: " + randomColor);
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+/* card.css */
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center; /* จัดให้อยู่กลางจอ */
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* กรอบการ์ด */
+.card {
+    background-color: white;
+    width: 300px;
+    border-radius: 10px; /* มุมมน */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* เงา */
+    overflow: hidden;
+    text-align: center;
+}
+
+/* หัวข้อด้านบน */
+.card-header {
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    margin: 0;
+}
+
+/* รูปโปรไฟล์ */
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* ทำเป็นวงกลม */
+    object-fit: cover;
+    margin-top: 20px;
+    border: 3px solid #ddd;
+}
+
+/* ตารางที่ซ่อนขอบ (Invisible Table) */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+td {
+    padding: 5px;
+    /* border: 1px solid red;  <-- เอาไว้เปิดดูโครงสร้างได้ แต่ตอนส่งต้องปิด */
+}
+
+/* ไอคอนโซเชียล */
+.social-icon {
+    width: 30px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.social-icon:hover {
+    transform: scale(1.2); /* ขยายเมื่อเอาเมาส์ชี้ */
+}
+
+/* ปุ่ม Contact */
+.contact-btn {
+    background-color: #008CBA;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.contact-btn:hover {
+    background-color: #005f73;
+}
