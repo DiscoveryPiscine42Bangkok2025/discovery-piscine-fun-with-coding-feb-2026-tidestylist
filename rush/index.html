@@ -1,52 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Space Showcase - Summary</title>
+    <title>Mission Control - Rush 00</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body { 
-            background: radial-gradient(circle at center, #1b2735 0%, #090a0f 100%); 
-            color: #e0e0e0; 
-            height: 100vh;
-            display: flex;
-            align-items: center;
+            background: #050505;
+            background-image: radial-gradient(circle at 50% 50%, #1a1a2e 0%, #050505 100%);
+            color: white; 
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            overflow-x: hidden;
         }
-        .card-custom { 
-            background: rgba(255, 255, 255, 0.05); 
-            border: 1px solid rgba(0, 212, 255, 0.3); 
-            backdrop-filter: blur(10px); 
-            transition: 0.4s;
-            border-radius: 20px;
-            padding: 40px;
+        /* Glassmorphism Card พร้อม Glow Effect */
+        .card-space { 
+            background: rgba(255, 255, 255, 0.03); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            backdrop-filter: blur(15px); 
+            border-radius: 25px; 
+            padding: 40px 20px;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
         }
-        .card-custom:hover { 
-            border-color: #00d4ff; 
-            box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
-            transform: translateY(-10px);
+        /* เอฟเฟกต์ตอนเอาเมาส์วาง */
+        .card-space:hover { 
+            transform: translateY(-15px) scale(1.02);
+            background: rgba(255, 255, 255, 0.07);
+            box-shadow: 0 0 40px rgba(0, 212, 255, 0.2);
+            border-color: rgba(0, 212, 255, 0.5);
         }
-        h1 { text-shadow: 0 0 15px rgba(0, 212, 255, 0.6); font-weight: bold; }
-        .btn-space { border: 1px solid #00d4ff; color: #00d4ff; text-decoration: none; padding: 10px 20px; border-radius: 30px; transition: 0.3s; }
-        .btn-space:hover { background: #00d4ff; color: #000; box-shadow: 0 0 15px #00d4ff; }
+        .profile-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 25px;
+        }
+        .profile-img { 
+            width: 160px; height: 160px; object-fit: cover; 
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            transition: 0.5s;
+        }
+        .card-space:hover .profile-img {
+            border-color: #00d4ff;
+            box-shadow: 0 0 20px #00d4ff;
+        }
+        .btn-mission { 
+            background: transparent;
+            color: #00d4ff; 
+            border: 2px solid #00d4ff; 
+            border-radius: 50px; 
+            padding: 12px 35px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+        .btn-mission:hover { 
+            background: #00d4ff; 
+            color: #000; 
+            box-shadow: 0 0 20px #00d4ff;
+        }
+        .text-neon { color: #00d4ff; text-shadow: 0 0 10px rgba(0, 212, 255, 0.5); font-weight: 700; }
     </style>
 </head>
 <body>
     <div class="container text-center">
-        <h1 class="display-3 mb-5">SPACE MISSION: RUSH 00</h1>
-        <div class="row justify-content-center">
-            <div class="col-md-5 mb-4">
-                <div class="card-custom">
-                    <h2 class="mb-4">Settapong Chanda</h2>
-                    <p class="mb-4">Member 2</p>
-                    <a href="portfolio1.html" class="btn-space">View Mission Profile</a>
+        <h1 class="display-3 mb-5 text-neon" style="letter-spacing: 5px;">ASTRO GATEWAY</h1>
+        <div class="row justify-content-center g-5">
+            <div class="col-md-5">
+                <div class="card-space">
+                    <div class="profile-wrapper">
+                        <img src="schandaprofile.jpg" class="profile-img" alt="schanda">
+                    </div>
+                    <h3 class="mb-1">Settapong Chanda</h3>
+                    <p class="mb-4 text-secondary">schanda</p>
+                    <a href="portfolio1.html" class="btn btn-mission">Access Profile</a>
                 </div>
             </div>
-            <div class="col-md-5 mb-4">
-                <div class="card-custom">
-                    <h2 class="mb-4">Member 2</h2>
-                    <p class="mb-4">Member 2</p>
-                    <a href="portfolio2.html" class="btn-space">View Mission Profile</a>
+            <div class="col-md-5">
+                <div class="card-space">
+                    <div class="profile-wrapper">
+                        <img src="pbannaraprofile.jpg" class="profile-img" alt="pbannara" style="border-color: rgba(212, 0, 255, 0.2);">
+                    </div>
+                    <h3 class="mb-1">Peerawish Bannarak</h3>
+                    <p class="mb-4 text-secondary">pbannara</p>
+                    <a href="portfolio2.html" class="btn btn-mission" style="color: #d400ff; border-color: #d400ff;">Access Profile</a>
                 </div>
             </div>
         </div>
