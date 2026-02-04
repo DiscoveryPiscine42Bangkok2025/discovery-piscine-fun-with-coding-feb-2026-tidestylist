@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { scroll-behavior: smooth; padding-top: 70px; }
+        /* แถบเมนูต้องมองเห็นตลอดเวลา [cite: 44] */
+        .navbar { background: rgba(0,0,0,0.9) !important; }
+        section { padding: 80px 0; border-bottom: 1px solid #eee; }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#nav-rush">
+
+    <nav id="nav-rush" class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Home</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="#about">About</a>
+                <a class="nav-link" href="#showcase">Showcase</a>
+                <a class="nav-link" href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="about" class="container text-center">
+        <h2>About Me</h2>
+        <img src="https://via.placeholder.com/150" class="rounded-circle my-4" alt="My Photo">
+        <h3>ชื่อ-นามสกุล ของคุณ</h3>
+        <p class="lead mt-3">ข้อมูลเกี่ยวกับประวัติการศึกษาและสิ่งที่คุณสนใจ [cite: 45]</p>
+    </section>
+
+    <section id="showcase" class="bg-light">
+        <div class="container">
+            <h2 class="text-center">Qualifications & Skills</h2>
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <h4>Skills</h4>
+                    <p>HTML, CSS, Git, C Language</p>
+                </div>
+                <div class="col-md-6">
+                    <h4>Accomplishments</h4>
+                    <p>รายละเอียดประสบการณ์หรือความสำเร็จของคุณ [cite: 46]</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="container text-center">
+        <h2>Contact Me</h2>
+        <div class="d-flex justify-content-center gap-4 mt-4">
+            <a href="https://github.com/yourlogin" class="btn btn-dark">GitHub</a>
+            <a href="https://linkedin.com/in/yourname" class="btn btn-primary">LinkedIn</a>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
