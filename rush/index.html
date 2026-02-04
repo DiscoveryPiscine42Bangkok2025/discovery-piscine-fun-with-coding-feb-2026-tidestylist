@@ -1,95 +1,278 @@
 <!DOCTYPE html>
+<!-- ประกาศว่าเอกสารนี้เป็น HTML5 เพื่อให้เบราว์เซอร์แสดงผลในโหมดมาตรฐาน -->
+
 <html lang="th">
+<!-- <html> คือแท็กครอบทั้งหน้าเว็บ | lang="th" ระบุว่าเนื้อหาเป็นภาษาไทย -->
+
 <head>
     <meta charset="UTF-8">
+    <!-- กำหนด encoding เป็น UTF-8 เพื่อให้ภาษาไทย/อักขระพิเศษแสดงผลถูกต้อง -->
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ทำให้หน้าเว็บ Responsive:
+         width=device-width = กว้างตามอุปกรณ์
+         initial-scale=1.0 = ซูมเริ่มต้น 1 เท่า -->
+
     <title>Mission Control - Rush 00</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- ชื่อที่โชว์บนแท็บเบราว์เซอร์ -->
+
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <!-- โหลด Bootstrap 5.3 CSS จาก CDN
+         ทำให้ใช้ class สำเร็จรูปได้ เช่น container, row, col-md-5, btn, text-center ฯลฯ -->
+
     <style>
+        /* =========================
+           STYLE: BODY (พื้นหลัง + จัดกลางด้วย Flexbox)
+           ========================= */
         body { 
             background: #050505;
+            /* สีพื้นหลังหลักแบบดำเข้ม */
+
             background-image: radial-gradient(circle at 50% 50%, #1a1a2e 0%, #050505 100%);
+            /* radial-gradient = ไล่สีแบบวงกลม
+               circle at 50% 50% = จุดศูนย์กลางอยู่กลางจอ
+               #1a1a2e 0% = สีตรงกลาง
+               #050505 100% = สีขอบจอ */
+
             color: white; 
+            /* สีตัวอักษรหลักเป็นสีขาว */
+
             min-height: 100vh; 
+            /* 100vh = สูงเต็มหน้าจอ (viewport height) */
+
             display: flex; 
+            /* เปิด Flexbox เพื่อจัดตำแหน่ง element ใน body */
+
             align-items: center; 
+            /* ใน Flexbox: จัดให้อยู่กึ่งกลางแนวตั้ง (Vertical center) */
+
             overflow-x: hidden;
+            /* ป้องกันการเลื่อนแนวนอนจากเงาหรือ transform ที่อาจล้น */
         }
-        /* Glassmorphism Card พร้อม Glow Effect */
+
+        /* =========================
+           GLASSMORPHISM CARD (การ์ดแบบกระจก)
+           ========================= */
         .card-space { 
             background: rgba(255, 255, 255, 0.03); 
+            /* rgba = สีแบบโปร่งใส (alpha=0.03 โปร่งมาก)
+               ทำให้ดูเหมือนกระจก */
+
             border: 1px solid rgba(255, 255, 255, 0.1); 
+            /* เส้นขอบสีขาวโปร่ง ๆ */
+
             backdrop-filter: blur(15px); 
+            /* เบลอฉากหลังที่อยู่ "ด้านหลัง" การ์ด (glass blur) */
+
             border-radius: 25px; 
+            /* มุมมน 25px */
+
             padding: 40px 20px;
+            /* ระยะห่างด้านใน: บนล่าง 40px ซ้ายขวา 20px */
+
             transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            /* ทำ animation ตอน hover ให้ลื่น
+               cubic-bezier คือรูปแบบความนุ่มของการเคลื่อนไหว */
+
             position: relative;
+            /* ทำให้ element นี้เป็น "จุดอ้างอิง" สำหรับ absolute (ถ้ามีในอนาคต) */
         }
-        /* เอฟเฟกต์ตอนเอาเมาส์วาง */
+
+        /* =========================
+           เอฟเฟกต์ตอนเอาเมาส์วางบนการ์ด
+           ========================= */
         .card-space:hover { 
             transform: translateY(-15px) scale(1.02);
+            /* translateY(-15px) = ยกการ์ดขึ้น 15px
+               scale(1.02) = ขยาย 2% ให้ดูเหมือนลอย */
+
             background: rgba(255, 255, 255, 0.07);
+            /* กระจกสว่างขึ้นตอน hover */
+
             box-shadow: 0 0 40px rgba(0, 212, 255, 0.2);
+            /* เงาเรืองแสงฟ้า (Glow) */
+
             border-color: rgba(0, 212, 255, 0.5);
+            /* เปลี่ยนสีขอบเป็นโทนฟ้าชัดขึ้น */
         }
+
+        /* =========================
+           ตัวครอบรูปโปรไฟล์
+           ========================= */
         .profile-wrapper {
             position: relative;
+            /* เป็นฐานอ้างอิงของ element ที่อาจซ้อนทับ (ถ้ามี) */
+
             display: inline-block;
+            /* ให้ element มีขนาดและอยู่กลางได้เหมือนข้อความ แต่ตั้ง width/height ได้ */
+
             margin-bottom: 25px;
+            /* เว้นระยะใต้รูป */
         }
+
+        /* =========================
+           รูปโปรไฟล์แบบวงกลม
+           ========================= */
         .profile-img { 
-            width: 160px; height: 160px; object-fit: cover; 
+            width: 160px; 
+            height: 160px; 
+            /* กำหนดขนาดกรอบรูปเป็น 160x160 */
+
+            object-fit: cover; 
+            /* ทำให้รูป "ครอบเต็มกรอบ" โดยไม่บิดเบี้ยว (อาจครอปบางส่วน) */
+
             border-radius: 50%;
+            /* ทำให้เป็นวงกลม (เมื่อ width=height) */
+
             border: 3px solid rgba(255, 255, 255, 0.2);
+            /* เส้นขอบสีขาวโปร่ง ๆ */
+
             transition: 0.5s;
+            /* ทำให้เวลาขอบ/เงาเปลี่ยนลื่น */
         }
+
+        /* เมื่อ hover ที่การ์ด ให้รูปเปลี่ยนตาม */
         .card-space:hover .profile-img {
             border-color: #00d4ff;
+            /* ขอบรูปเป็นฟ้านีออน */
+
             box-shadow: 0 0 20px #00d4ff;
+            /* เงาเรืองแสงรอบรูป */
         }
+
+        /* =========================
+           ปุ่มสไตล์ Mission
+           ========================= */
         .btn-mission { 
             background: transparent;
+            /* พื้นหลังใส */
+
             color: #00d4ff; 
+            /* สีตัวอักษรฟ้านีออน */
+
             border: 2px solid #00d4ff; 
+            /* เส้นขอบฟ้านีออน */
+
             border-radius: 50px; 
+            /* ทำให้ปุ่มเป็นทรงแคปซูล */
+
             padding: 12px 35px;
+            /* ขยายพื้นที่ภายในปุ่ม */
+
             font-weight: bold;
+            /* ตัวหนา */
+
             text-transform: uppercase;
+            /* แปลงเป็นตัวพิมพ์ใหญ่ (เฉพาะภาษาอังกฤษ) */
+
             letter-spacing: 2px;
+            /* เพิ่มระยะห่างตัวอักษร ให้ดู sci-fi */
+
             transition: 0.3s;
+            /* ทำให้ hover ลื่น */
         }
+
+        /* เอฟเฟกต์ตอนเอาเมาส์วางบนปุ่ม */
         .btn-mission:hover { 
             background: #00d4ff; 
+            /* เติมพื้นหลังเป็นฟ้า */
+
             color: #000; 
+            /* ตัวอักษรเป็นสีดำตัดกับพื้นหลังฟ้า */
+
             box-shadow: 0 0 20px #00d4ff;
+            /* เงาเรืองแสง */
         }
-        .text-neon { color: #00d4ff; text-shadow: 0 0 10px rgba(0, 212, 255, 0.5); font-weight: 700; }
+
+        /* =========================
+           ข้อความนีออน
+           ========================= */
+        .text-neon { 
+            color: #00d4ff; 
+            /* สีฟ้า */
+
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+            /* แสงฟุ้ง */
+
+            font-weight: 700; 
+            /* 700 = หนากว่า bold ปกติ */
+        }
     </style>
 </head>
+
 <body>
+    <!-- container ของ Bootstrap:
+         - ช่วยจัดให้อยู่กลางหน้าและมีระยะขอบอัตโนมัติ
+         - text-center ทำให้ข้อความอยู่กลาง -->
     <div class="container text-center">
+
+        <!-- display-3 = ตัวอักษรใหญ่แบบ heading (Bootstrap)
+             mb-5 = เว้นด้านล่างระดับ 5
+             text-neon = class ที่เราสร้างเองให้เรืองแสง
+             style letter-spacing = เพิ่มระยะห่างตัวอักษร -->
         <h1 class="display-3 mb-5 text-neon" style="letter-spacing: 5px;">ASTRO GATEWAY</h1>
+
+        <!-- row = แถวของ grid
+             justify-content-center = จัดคอลัมน์ให้อยู่กลาง
+             g-5 = gap ระหว่างคอลัมน์ระดับ 5 -->
         <div class="row justify-content-center g-5">
+
+            <!-- col-md-5 = บนจอ md ขึ้นไปกว้าง 5/12 ของแถว
+                 จอเล็กจะเรียงลงมาทีละใบเต็มความกว้าง -->
             <div class="col-md-5">
                 <div class="card-space">
                     <div class="profile-wrapper">
                         <img src="schandaprofile.jpg" class="profile-img" alt="schanda">
+                        <!-- src = ไฟล์รูป (ต้องอยู่ path ถูก)
+                             class profile-img = ทำเป็นวงกลม/ครอป/มีขอบ
+                             alt = ข้อความสำรองกรณีรูปโหลดไม่ได้ -->
                     </div>
+
                     <h3 class="mb-1">Settapong Chanda</h3>
+                    <!-- mb-1 = เว้นด้านล่างเล็กน้อย -->
+
                     <p class="mb-4 text-secondary">schanda</p>
+                    <!-- text-secondary = สีเทา (Bootstrap)
+                         mb-4 = เว้นด้านล่าง -->
+
                     <a href="portfolio1.html" class="btn btn-mission">Access Profile</a>
+                    <!-- <a> เป็นลิงก์ไปหน้า portfolio1.html
+                         btn = ปรับให้เหมือนปุ่ม (Bootstrap)
+                         btn-mission = ปุ่มนีออนแบบที่เราทำเอง -->
                 </div>
             </div>
+
+            <!-- การ์ดใบที่ 2 -->
             <div class="col-md-5">
                 <div class="card-space">
                     <div class="profile-wrapper">
-                        <img src="pbannaraprofile.jpg" class="profile-img" alt="pbannara" style="border-color: rgba(212, 0, 255, 0.2);">
+                        <img 
+                            src="pbannaraprofile.jpg" 
+                            class="profile-img" 
+                            alt="pbannara" 
+                            style="border-color: rgba(212, 0, 255, 0.2);"
+                        >
+                        <!-- border-color ถูก override ให้เป็นโทนม่วงเฉพาะรูปนี้ -->
                     </div>
+
                     <h3 class="mb-1">Peerawish Bannarak</h3>
                     <p class="mb-4 text-secondary">pbannara</p>
-                    <a href="portfolio2.html" class="btn btn-mission" style="color: #d400ff; border-color: #d400ff;">Access Profile</a>
+
+                    <a 
+                        href="portfolio2.html" 
+                        class="btn btn-mission" 
+                        style="color: #d400ff; border-color: #d400ff;"
+                    >
+                        Access Profile
+                    </a>
+                    <!-- ปุ่มใบนี้ override สีเป็นม่วง:
+                         color = สีตัวอักษร
+                         border-color = สีขอบ
+                         หมายเหตุ: hover ยังใช้ .btn-mission:hover (พื้นหลังฟ้า)
+                         ถ้าต้องการ hover เป็นม่วง ต้องเขียนคลาสใหม่เพิ่ม -->
                 </div>
             </div>
+
         </div>
     </div>
 </body>

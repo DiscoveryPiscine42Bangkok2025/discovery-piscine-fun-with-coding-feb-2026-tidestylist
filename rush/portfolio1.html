@@ -1,78 +1,262 @@
 <!DOCTYPE html>
+<!-- ประกาศว่าเอกสารนี้เป็น HTML5 เพื่อให้เบราว์เซอร์เรนเดอร์แบบมาตรฐาน -->
+
 <html lang="th">
+<!-- แท็กหลักของ HTML ทั้งหน้า | lang="th" ระบุภาษาไทย (ช่วย SEO/Accessibility) -->
+
 <head>
     <meta charset="UTF-8">
+    <!-- กำหนดชุดอักขระเป็น UTF-8 เพื่อรองรับภาษาไทย/อักขระพิเศษ -->
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ทำให้หน้าเว็บ Responsive:
+         width=device-width = กว้างเท่าอุปกรณ์
+         initial-scale=1.0 = ซูมเริ่มต้น 1 เท่า -->
+
     <title>schanda - Engineering Record</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- ชื่อแท็บของเบราว์เซอร์ -->
+
+    <link href="bootstrap1.min.css" rel="stylesheet">
+    <!-- โหลด Bootstrap 5.3 (CSS) ผ่าน CDN:
+         href = ที่อยู่ไฟล์ CSS
+         rel="stylesheet" = บอกว่าเป็นสไตล์ชีต
+         ทำให้ใช้ class สำเร็จรูป เช่น container, row, col-md-6, navbar, btn ฯลฯ -->
+
     <style>
+        /* =========================
+           GLOBAL STYLE: <body>
+           ========================= */
         body { 
-            background: #050a15; 
-            color: #e0e0e0; 
-            scroll-behavior: smooth; 
+            background: #050a15;
+            /* สีพื้นหลังหลัก */
+
+            color: #e0e0e0;
+            /* สีตัวอักษรหลัก (เทาอ่อน) อ่านง่ายบนพื้นมืด */
+
+            scroll-behavior: smooth;
+            /* เวลา click ลิงก์แบบ anchor (#about) จะเลื่อนแบบ smooth */
+
             padding-top: 80px;
+            /* กันเนื้อหาด้านบนถูก navbar fixed-top บัง */
+
             background-image: radial-gradient(circle at 50% 50%, #0a192f 0%, #050a15 100%);
+            /* ทำ gradient แบบวงกลม:
+               circle at 50% 50% = วงกลมกลางจอ
+               สีเริ่ม #0a192f ที่ 0%
+               สีจบ #050a15 ที่ 100% */
         }
-        /* Navigation Bar ต้องมองเห็นตลอดเวลาตามโจทย์  */
+
+        /* =========================
+           NAVBAR: ให้เห็นตลอดเวลา
+           ========================= */
         .navbar { 
-            background: rgba(5, 10, 21, 0.85) !important; 
-            backdrop-filter: blur(10px); 
-            border-bottom: 1px solid rgba(0, 212, 255, 0.3); 
+            background: rgba(5, 10, 21, 0.85) !important;
+            /* ใช้พื้นหลังโปร่งนิด ๆ แบบกระจก
+               !important = บังคับให้ชนะสไตล์เดิมของ Bootstrap */
+
+            backdrop-filter: blur(10px);
+            /* เบลอพื้นหลังด้านหลัง navbar (glass effect) */
+
+            border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+            /* เส้นขอบล่างแบบนีออนฟ้าบาง ๆ */
         }
-        .nav-link { color: #00d4ff !important; }
-        .nav-link:hover { text-shadow: 0 0 10px #00d4ff; }
-        
-        section { padding: 120px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-        .text-neon-blue { color: #00d4ff; text-shadow: 0 0 10px rgba(0, 212, 255, 0.5); font-weight: bold; }
-        
+
+        .nav-link { 
+            color: #00d4ff !important; 
+        }
+        /* nav-link คือ class ของ Bootstrap สำหรับลิงก์ใน navbar
+           !important เพื่อ override สีเดิม */
+
+        .nav-link:hover { 
+            text-shadow: 0 0 10px #00d4ff; 
+        }
+        /* hover = ตอนเอาเมาส์ชี้ เพิ่มแสงฟุ้งให้ตัวอักษร */
+
+        /* =========================
+           SECTION: ระยะห่างแต่ละช่วง
+           ========================= */
+        section { 
+            padding: 120px 0; 
+            /* เว้นด้านบน-ล่าง 120px, ซ้าย-ขวา 0 */
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            /* เส้นแบ่ง section จาง ๆ เพื่อความเป็นระเบียบ */
+        }
+
+        .text-neon-blue { 
+            color: #00d4ff; 
+            /* สีฟ้านีออน */
+
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5); 
+            /* แสงฟุ้งของตัวอักษร */
+
+            font-weight: bold; 
+            /* ตัวหนา */
+        }
+
+        /* =========================
+           GLASS PANEL: กล่องกระจก
+           ========================= */
         .glass-panel { 
             background: rgba(255, 255, 255, 0.02); 
+            /* พื้นหลังโปร่งมากให้เหมือนกระจก */
+
             border: 1px solid rgba(0, 212, 255, 0.2); 
+            /* ขอบโทนฟ้าโปร่ง */
+
             padding: 30px; 
+            /* ระยะห่างภายในกล่อง */
+
             border-radius: 20px;
+            /* มุมมน */
+
             transition: 0.3s;
+            /* ทำให้ hover เปลี่ยนลื่น */
         }
+
         .glass-panel:hover {
             background: rgba(0, 212, 255, 0.05);
+            /* ตอน hover พื้นหลังติดฟ้านิด ๆ */
+
             border-color: #00d4ff;
+            /* ขอบชัดเป็นสีฟ้านีออน */
         }
+
+        /* =========================
+           BADGE: ป้ายทักษะ
+           ========================= */
         .badge-eng {
             background: linear-gradient(45deg, #00d4ff, #0055ff);
+            /* ไล่สีเฉียง 45 องศา ฟ้า -> น้ำเงิน */
+
             border: none;
+            /* เอาขอบออก (Bootstrap badge อาจมีขอบบางบริบท) */
+
             margin: 3px;
+            /* เว้นระยะระหว่าง badge */
         }
     </style>
 </head>
+
 <body data-bs-spy="scroll" data-bs-target="#nav">
+<!-- เปิด ScrollSpy ของ Bootstrap:
+     data-bs-spy="scroll" = ให้ Bootstrap สังเกตตำแหน่งการ scroll
+     data-bs-target="#nav" = ให้ไปอัปเดต active link ที่ navbar id="nav"
+     หมายเหตุ: บางเคสอาจต้องเพิ่ม data-bs-offset และ tabindex เพื่อให้เสถียรขึ้น -->
+
     <nav id="nav" class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <!-- <nav> = semantic สำหรับเมนูนำทาง
+         id="nav" = ให้ ScrollSpy อ้างอิง
+         navbar = เปิดสไตล์ navbar ของ Bootstrap
+         navbar-expand-lg = จอใหญ่จะเป็นแนวนอน (ถ้าทำ collapse จะทำงานเต็ม)
+         navbar-dark = โทนสีเหมาะกับพื้นหลังมืด
+         fixed-top = ติดด้านบนตลอดเวลา -->
+
         <div class="container">
+        <!-- container = จำกัดความกว้าง + จัดให้อยู่กลาง -->
+
             <a class="navbar-brand text-neon-blue" href="index.html">ENGINEER RUSH</a>
+            <!-- navbar-brand = โลโก้/ชื่อแบรนด์ (Bootstrap)
+                 text-neon-blue = สไตล์นีออนที่เราเขียนเอง
+                 href="index.html" = ลิงก์กลับหน้าแรก -->
+
             <div class="navbar-nav ms-auto">
+            <!-- navbar-nav = กลุ่มลิงก์ใน navbar
+                 ms-auto = margin-start auto (Bootstrap 5)
+                 ผลคือดันเมนูไปชิดขวา -->
+
                 <a class="nav-link" href="#about">About</a>
+                <!-- nav-link = สไตล์ลิงก์ navbar ของ Bootstrap
+                     href="#about" = เลื่อนไป section ที่ id="about" -->
+
                 <a class="nav-link" href="#showcase">Showcase</a>
+                <!-- เลื่อนไป id="showcase" -->
+
                 <a class="nav-link" href="#contact">Contact</a>
+                <!-- เลื่อนไป id="contact" -->
             </div>
         </div>
     </nav>
 
     <section id="about" class="container text-center">
+    <!-- section = แบ่งส่วนเนื้อหา
+         id="about" = จุดปลายทางของ #about
+         container = จำกัดความกว้าง (Bootstrap)
+         text-center = จัดข้อความตรงกลาง (Bootstrap) -->
+
         <h2 class="text-neon-blue mb-5 text-uppercase">The Engineer</h2>
-        <img src="schandaprofile.jpg" class="rounded-circle mb-4" style="width: 200px; height: 200px; object-fit: cover; border: 4px solid #00d4ff; box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);">
+        <!-- text-neon-blue = ฟ้าพร้อม glow (custom)
+             mb-5 = margin-bottom ระดับ 5 (Bootstrap spacing)
+             text-uppercase = แปลงเป็นตัวพิมพ์ใหญ่ (Bootstrap) -->
+
+        <img 
+            src="schandaprofile.jpg" 
+            class="rounded-circle mb-4"
+            style="
+                width: 200px; 
+                height: 200px; 
+                object-fit: cover; 
+                border: 4px solid #00d4ff; 
+                box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+            "
+        >
+        <!-- รูปโปรไฟล์:
+             src = ไฟล์รูป (ต้องอยู่ path ถูก)
+             rounded-circle = ทำเป็นวงกลม (Bootstrap)
+             mb-4 = เว้นล่าง
+             style inline:
+               width/height = กรอบ 200x200
+               object-fit: cover = ครอปให้เต็มกรอบแบบไม่บิดเบี้ยว
+               border = ขอบนีออน
+               box-shadow = เงาเรืองแสง -->
+
         <h3 class="fw-bold">Settapong Chanda</h3>
+        <!-- fw-bold = font-weight bold (Bootstrap) -->
+
         <p class="lead mx-auto" style="max-width: 800px;">
+        <!-- lead = ตัวอักษรนำ (ใหญ่ขึ้น อ่านเป็นคำโปรย) (Bootstrap)
+             mx-auto = margin-left/right auto ทำให้ block อยู่กลาง
+             max-width = จำกัดความกว้างไม่ให้บรรทัดยาวเกิน -->
+
             นักศึกษาวิศวกรรมไฟฟ้า KMITL [cite: 66, 105] <br>
+            <!-- <br> ขึ้นบรรทัดใหม่
+                 [cite: ...] เป็นข้อความธรรมดาใน HTML (ไม่ใช่ระบบอ้างอิงจริง)
+                 ถ้าจะทำ citation จริงควรใช้ <sup> และลิงก์ไป reference -->
+
             ผู้เชี่ยวชาญด้าน System Design และการพัฒนาเครื่องมือคำนวณทางวิศวกรรม [cite: 66, 67]
         </p>
     </section>
 
     <section id="showcase" class="container">
+    <!-- showcase section: กล่องเนื้อหาแบบ 2 คอลัมน์ -->
+
         <h2 class="text-center text-neon-blue mb-5">TECHNICAL LOGS</h2>
+        <!-- text-center จัดกลาง | text-neon-blue นีออน | mb-5 เว้นล่าง -->
+
         <div class="row g-4">
+        <!-- row = แถว grid (Bootstrap)
+             g-4 = gap ระหว่างคอลัมน์ระดับ 4 -->
+
             <div class="col-md-6">
+            <!-- col-md-6 = จอ md ขึ้นไป กว้างครึ่งหนึ่ง (6/12)
+                 จอเล็กจะเรียงลงมาทีละอันอัตโนมัติ -->
+
                 <div class="glass-panel h-100">
+                <!-- glass-panel = กล่องกระจก (custom)
+                     h-100 = สูง 100% เพื่อให้กล่องสองฝั่งสูงเท่ากัน -->
+
                     <h4 class="text-neon-blue mb-4">Engineering Skills</h4>
+
                     <div class="d-flex flex-wrap">
+                    <!-- d-flex = เปิด flexbox (Bootstrap)
+                         flex-wrap = ให้ item ขึ้นบรรทัดใหม่ ไม่ล้นแนวนอน -->
+
                         <span class="badge badge-eng p-2 px-3">MATLAB</span>
+                        <!-- badge = badge ของ Bootstrap
+                             badge-eng = สไตล์ไล่สีที่เขียนเอง
+                             p-2 = padding รอบด้านระดับ 2
+                             px-3 = padding ซ้ายขวาระดับ 3 -->
+
                         <span class="badge badge-eng p-2 px-3">Python</span>
                         <span class="badge badge-eng p-2 px-3">ANN</span>
                         <span class="badge badge-eng p-2 px-3">Excel VBA</span>
@@ -80,11 +264,22 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md-6">
+            <!-- คอลัมน์ขวา -->
+
                 <div class="glass-panel h-100">
                     <h4 class="text-neon-blue mb-4">Key Accomplishments</h4>
+
                     <ul class="list-unstyled">
+                    <!-- ul = รายการ
+                         list-unstyled = เอา bullet ออก (Bootstrap) -->
+
                         <li class="mb-2">⚡ Internship at MEA: Underground Cable Design Tools [cite: 67, 118]</li>
+                        <!-- li = รายการ
+                             mb-2 = เว้นระยะใต้บรรทัด
+                             emoji เป็นสัญลักษณ์นำสายตา -->
+
                         <li class="mb-2">📄 Accepted Publication: IEEE/IAS 2026 [cite: 111]</li>
                         <li class="mb-2">🧠 Fault Diagnosis System using Artificial Neural Network [cite: 114]</li>
                         <li class="mb-2">🔌 PLC-Based Induction Motor Control Project [cite: 121]</li>
@@ -95,18 +290,50 @@
     </section>
 
     <section id="contact" class="container text-center">
+    <!-- contact section -->
+
         <h2 class="text-neon-blue mb-4">CONNECT</h2>
+
         <p class="mb-5">มุ่งมั่นพัฒนาเทคโนโลยีเพื่อความยั่งยืน [cite: 68]</p>
+
         <div class="d-flex justify-content-center gap-3">
-            <a href="https://github.com/DiscoveryPiscine42Bangkok2025/discovery-piscine-fun-with-coding-feb-2026-tidestylist.git" class="btn btn-outline-light px-4 py-2">GitHub</a>
-            <a href="mailto:Settapong.junda@gmail.com" class="btn btn-outline-info px-4 py-2">Email</a>
+        <!-- d-flex = flexbox
+             justify-content-center = จัดกลางแนวนอน
+             gap-3 = ระยะห่างระหว่างปุ่ม -->
+
+            <a 
+                href="https://github.com/DiscoveryPiscine42Bangkok2025/discovery-piscine-fun-with-coding-feb-2026-tidestylist.git" 
+                class="btn btn-outline-light px-4 py-2"
+            >
+                GitHub
+            </a>
+            <!-- <a> = ลิงก์
+                 btn = ทำให้ดูเหมือนปุ่ม (Bootstrap)
+                 btn-outline-light = ปุ่มเส้นขอบสีอ่อน
+                 px-4 py-2 = padding เพิ่มความใหญ่ -->
+
+            <a 
+                href="mailto:Settapong.junda@gmail.com" 
+                class="btn btn-outline-info px-4 py-2"
+            >
+                Email
+            </a>
+            <!-- mailto: = เปิดโปรแกรมอีเมลพร้อมใส่ผู้รับ -->
         </div>
     </section>
 
     <footer class="text-center py-4 text-muted">
+    <!-- footer = ท้ายหน้า
+         text-center = จัดกลาง
+         py-4 = padding บน-ล่าง
+         text-muted = สีจาง -->
+
         <small>Piscine Discovery - Rush 00 @ 42 Bangkok [cite: 1, 7]</small>
+        <!-- small = ตัวอักษรเล็กลง -->
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- โหลด Bootstrap JS (รวม Popper ใน bundle)
+         จำเป็นสำหรับฟีเจอร์ JS เช่น ScrollSpy, dropdown, collapse ฯลฯ -->
 </body>
 </html>

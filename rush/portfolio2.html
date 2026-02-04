@@ -1,77 +1,194 @@
 <!DOCTYPE html>
+<!-- ประกาศว่าเป็น HTML5 ให้เบราว์เซอร์เรนเดอร์แบบมาตรฐาน -->
+
 <html lang="th">
+<!-- lang="th" ระบุว่าภาษาเว็บเป็นภาษาไทย -->
+
 <head>
     <meta charset="UTF-8">
+    <!-- ตั้งค่า charset เป็น UTF-8 รองรับภาษาไทยและอักขระพิเศษ -->
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ทำให้เว็บไซต์ Responsive บนอุปกรณ์มือถือ -->
+
     <title>pbannara - Creative Record</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- ชื่อแท็บของหน้าเว็บ -->
+
+    <link href="bootstrap2.min.css" rel="stylesheet">
+    <!-- โหลด Bootstrap เวอร์ชันที่เก็บไว้ในโปรเจกต์ (ไฟล์ชื่อ bootstrap2.min.css) -->
+
     <style>
+        /* -----------------------------------------------------------
+           สไตล์หลักของ BODY
+           ----------------------------------------------------------- */
         body { 
             background: #0d011a; 
+            /* สีพื้นหลังเข้มโทนม่วงดำ */
+
             color: #e0e0e0; 
+            /* สีข้อความหลัก */
+
             scroll-behavior: smooth; 
+            /* เมื่อคลิก anchor (#about) จะเลื่อนนุ่มๆ */
+
             padding-top: 80px;
+            /* ป้องกัน navbar (fixed-top) ทับเนื้อหาด้านบน */
+
             background-image: radial-gradient(circle at 50% 50%, #20013d 0%, #0d011a 100%);
+            /* พื้นหลังแบบไล่สีวงกลม ให้ฟีลงานศิลป์แบบมืดๆ */
         }
-        /* Navigation Bar ต้องมองเห็นตลอดเวลาตามโจทย์ */
+
+        /* -----------------------------------------------------------
+           NAVBAR (ติดบนสุดตลอดเวลา)
+           ----------------------------------------------------------- */
         .navbar { 
             background: rgba(13, 1, 26, 0.85) !important; 
+            /* ใช้ rgba + โปร่งใส 85% → ให้ความรู้สึกเป็นกระจก */
+
             backdrop-filter: blur(10px); 
+            /* เบลอฉากหลังหลัง Navbar */
+
             border-bottom: 1px solid rgba(212, 0, 255, 0.3); 
+            /* เส้นคั่นสีม่วงโปร่ง */
         }
+
         .nav-link { color: #d400ff !important; }
+        /* สีลิงก์ Navbar เป็นม่วง */
+
         .nav-link:hover { text-shadow: 0 0 10px #d400ff; }
-        
-        section { padding: 120px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-        .text-neon-purple { color: #d400ff; text-shadow: 0 0 10px rgba(212, 0, 255, 0.5); font-weight: bold; }
-        
+        /* Hover แล้วมีแสงเรือง ๆ */
+
+        /* -----------------------------------------------------------
+           SECTION แต่ละส่วนของหน้าเว็บ
+           ----------------------------------------------------------- */
+        section { 
+            padding: 120px 0; 
+            /* เว้นพื้นที่ด้านบนล่างให้ดูโปร่ง */
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+            /* เส้นแบ่ง section จาง ๆ */
+        }
+
+        .text-neon-purple { 
+            color: #d400ff; 
+            /* สีม่วงนีออน */
+
+            text-shadow: 0 0 10px rgba(212, 0, 255, 0.5); 
+            /* แสงฟุ้ง */
+
+            font-weight: bold; 
+            /* ตัวหนา */
+        }
+
+        /* -----------------------------------------------------------
+           GLASS PANEL – กล่องแบบกระจก
+           ----------------------------------------------------------- */
         .glass-panel { 
             background: rgba(255, 255, 255, 0.02); 
+            /* โปร่งใส 2% → ฟีลกระจก */
+
             border: 1px solid rgba(212, 0, 255, 0.2); 
+            /* ขอบม่วงโปร่ง */
+
             padding: 30px; 
             border-radius: 20px;
             transition: 0.3s;
         }
+
         .glass-panel:hover {
             background: rgba(212, 0, 255, 0.05);
+            /* Hover → กระจกสว่างขึ้น */
+
             border-color: #d400ff;
+            /* ขอบเปลี่ยนเป็นม่วงเข้ม */
         }
+
+        /* -----------------------------------------------------------
+           BADGE – ป้ายทักษะสวย ๆ
+           ----------------------------------------------------------- */
         .badge-art {
             background: linear-gradient(45deg, #d400ff, #00d4ff);
+            /* ไล่สีม่วง → ฟ้า เป็นธีมศิลป์ */
+
             border: none;
             margin: 3px;
         }
     </style>
 </head>
+
 <body data-bs-spy="scroll" data-bs-target="#nav">
+<!-- data-bs-spy="scroll" = เปิด ScrollSpy 
+     data-bs-target="#nav" = ให้ Bootstrap active ลิงก์ตามตำแหน่ง Scroll -->
+
     <nav id="nav" class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <!-- navbar-expand-lg = เมนูจะ full-width บนจอใหญ่
+         navbar-dark = ทำให้สีตัวอักษรเหมาะกับพื้นหลังมืด
+         fixed-top = ลอยอยู่บนสุดไม่เลื่อน -->
+
         <div class="container">
+
             <a class="navbar-brand text-neon-purple" href="index.html">CREATIVE RUSH</a>
+            <!-- navbar-brand = โลโก้หรือชื่อเว็บทางซ้าย -->
+
             <div class="navbar-nav ms-auto">
+            <!-- ms-auto = margin-left auto → ดันเมนูไปขวาสุด -->
+
                 <a class="nav-link" href="#about">About</a>
+                <!-- เมื่อกดจะเลื่อนลงไป section id="about"  -->
+
                 <a class="nav-link" href="#showcase">Showcase</a>
+
                 <a class="nav-link" href="#contact">Contact</a>
             </div>
         </div>
     </nav>
 
+    <!-- ---------------------------------------------------------
+         SECTION 1: ABOUT ARTIST
+         --------------------------------------------------------- -->
     <section id="about" class="container text-center">
+
         <h2 class="text-neon-purple mb-5 text-uppercase">The Artist</h2>
-        <img src="pbannaraprofile.jpg" class="rounded-circle mb-4" style="width: 200px; height: 200px; object-fit: cover; border: 4px solid #d400ff; box-shadow: 0 0 30px rgba(212, 0, 255, 0.3);">
+        <!-- text-uppercase = แปลงเป็นพิมพ์ใหญ่ทุกตัว -->
+
+        <img 
+            src="pbannaraprofile.jpg"
+            class="rounded-circle mb-4"
+            style="width: 200px; height: 200px; object-fit: cover; border: 4px solid #d400ff; box-shadow: 0 0 30px rgba(212, 0, 255, 0.3);"
+        >
+        <!-- rounded-circle = รูปวงกลม
+             object-fit: cover = ครอปรูปให้ลงกรอบแบบไม่บิดเบี้ยว -->
+
         <h3 class="fw-bold">Peerawish Bannarak</h3>
+
         <p class="lead mx-auto" style="max-width: 800px;">
             นักศึกษาสถาปัตยกรรมศาสตร์ สาขา Fine Art <br>
             ผู้ผสมผสานงานศิลปะแบบดั้งเดิมเข้ากับเครื่องมือดิจิทัลยุคใหม่
         </p>
     </section>
 
+    <!-- ---------------------------------------------------------
+         SECTION 2: SHOWCASE (Skill + Focus Area)
+         --------------------------------------------------------- -->
     <section id="showcase" class="container">
+
         <h2 class="text-center text-neon-purple mb-5">TECHNICAL LOGS</h2>
+
         <div class="row g-4">
+        <!-- row = กำหนดแถว
+             g-4 = ช่องว่างระหว่างคอลัมน์ -->
+
+            <!-- LEFT COLUMN: Creative Skills -->
             <div class="col-md-6">
+                <!-- บนจอใหญ่กิน 6/12 = ครึ่งหนึ่ง -->
+
                 <div class="glass-panel h-100">
                     <h4 class="text-neon-purple mb-4">Creative Skills</h4>
+
                     <div class="d-flex flex-wrap">
+                        <!-- d-flex = ให้ badge เรียงเป็น Flex
+                             flex-wrap = ขึ้นบรรทัดใหม่ได้ ไม่ล้น -->
+
                         <span class="badge badge-art p-2 px-3">After Effects (Ae)</span>
                         <span class="badge badge-art p-2 px-3">Premiere Pro (Pr)</span>
                         <span class="badge badge-art p-2 px-3">HTML</span>
@@ -80,10 +197,16 @@
                     </div>
                 </div>
             </div>
+
+            <!-- RIGHT COLUMN: Focus Areas -->
             <div class="col-md-6">
                 <div class="glass-panel h-100">
+
                     <h4 class="text-neon-purple mb-4">Focus Areas</h4>
+
                     <ul class="list-unstyled">
+                        <!-- list-unstyled = เอา bullet point ออก เพื่อให้ดู modern -->
+
                         <li class="mb-2">✨ Motion Graphics & Visual Effects</li>
                         <li class="mb-2">🏛️ Architectural Visualization</li>
                         <li class="mb-2">🎨 Fine Art Exhibition Design</li>
@@ -91,22 +214,49 @@
                     </ul>
                 </div>
             </div>
+
         </div>
     </section>
 
+    <!-- ---------------------------------------------------------
+         SECTION 3: CONTACT
+         --------------------------------------------------------- -->
     <section id="contact" class="container text-center">
+
         <h2 class="text-neon-purple mb-4">CONNECT</h2>
+
         <p class="mb-5">พร้อมสำหรับการสร้างสรรค์สิ่งใหม่ร่วมกัน</p>
+
         <div class="d-flex justify-content-center gap-3">
-            <a href="https://github.com/DiscoveryPiscine42Bangkok2025/discovery-piscine-fun-with-coding-feb-2026-66020290/tree/main" class="btn btn-outline-light px-4 py-2">GitHub</a>
-            <a href="pbannara@student.42bangkok.com" class="btn btn-outline-info px-4 py-2" style="border-color: #d400ff; color: #d400ff;">Email</a>
+        <!-- d-flex = ปรับเรียงเป็นแถว
+             justify-content-center = จัดกลาง -->
+
+            <a 
+                href="https://github.com/DiscoveryPiscine42Bangkok2025/discovery-piscine-fun-with-coding-feb-2026-66020290/tree/main" 
+                class="btn btn-outline-light px-4 py-2"
+            >
+                GitHub
+            </a>
+
+            <a 
+                href="mailto:pbannara@student.42bangkok.com"
+                class="btn btn-outline-info px-4 py-2"
+                style="border-color: #d400ff; color: #d400ff;"
+            >
+                Email
+            </a>
+            <!-- ปุ่ม Email ใช้โทนม่วงให้เข้าธีม -->
         </div>
     </section>
 
+    <!-- ---------------------------------------------------------
+         FOOTER
+         --------------------------------------------------------- -->
     <footer class="text-center py-4 text-muted">
         <small>Piscine Discovery - Rush 00 @ 42 Bangkok</small>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- โหลด Bootstrap JavaScript: จำเป็นสำหรับ ScrollSpy/Navbar Collapse -->
 </body>
 </html>
